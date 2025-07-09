@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useSpeechSynthesis } from 'react-speech-kit';
 // @ts-ignore
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import styles from './SpinWheel.module.css';
+import styles from '../styles/SpinWheel.module.css';
 
 const prizes = ['10% Off', 'Free Shipping', '5% Cashback', 'Try Again', 'Surprise Gift', '20% Discount'];
 
@@ -46,10 +46,10 @@ export default function SpinWheel() {
 
   return (
     <div className="flex flex-col items-center gap-6">
-      <div className="wheel-container">
-        <div className="wheel" ref={wheelRef}>
+      <div className={styles['wheel-container']}>
+        <div className={styles['wheel']} ref={wheelRef}>
           {prizes.map((prize, index) => (
-            <div key={index} className="slice"
+            <div key={index} className={styles['slice']}
               style={{
                 transform: `rotate(${(360 / prizes.length) * index}deg) skewY(-30deg)`,
                 background: index % 2 === 0 ? '#93c5fd' : '#bfdbfe'
@@ -58,7 +58,7 @@ export default function SpinWheel() {
             </div>
           ))}
         </div>
-        <div className="arrow" />
+        <div className={styles['arrow']}/>
       </div>
       <button onClick={spin} className="bg-indigo-600 text-white px-6 py-2 rounded-full">Spin the Wheel</button>
       <button onClick={() => SpeechRecognition.startListening({ continuous: true })} className="text-sm text-indigo-800 underline">
